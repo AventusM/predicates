@@ -105,11 +105,21 @@
 
 (defn HAS-ALL-THE-AWARDS?
   [book awards]
-
+  (every? (fn [x] (has-award? book x)) awards)
   )
 
-(defn my-some [pred a-seq]
-  :-)
+(HAS-ALL-THE-AWARDS? cities #{:locus})
+(HAS-ALL-THE-AWARDS? cities #{:locus :world-fantasy :hugo})
+(HAS-ALL-THE-AWARDS? cities #{:locus :world-fantasy :hugo :pulitzer})
+(HAS-ALL-THE-AWARDS? lord-of-light #{:locus :world-fantasy :hugo})
+(HAS-ALL-THE-AWARDS? lord-of-light #{:hugo})
+(HAS-ALL-THE-AWARDS? scanner-darkly #{})
+
+(defn
+  my-some
+  [pred a-seq]
+
+  )
 
 (defn my-every? [pred a-seq]
   :-)
