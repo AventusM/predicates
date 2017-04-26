@@ -87,10 +87,19 @@
 ;ongelma - first tyyliset metodit
 ;1. korjaus (or) - ei onnistu (molemmin päin)
 ;2. korjaus - vaihdetaan filter mappiin
+;3. korjaus -> filtteröidään filtteröity map (luvut yms. palauttavat aina truen)
+;ja valitaan ensimmäinen
+
+;vastaus - apu löytyi stackoverwlofista
+;http://stackoverflow.com/questions/12518320/counting-only-truthy-values-in-a-collection
+;identity - niminen metodi. Se ratkaisi true - ongelmat, jotkut falset palauttivat nil
+;ratkaisu siihen -> lisätään or
 (defn
   my-some
   [pred a-seq]
-  (map (fn [x] (pred x)) a-seq)
+  (let [mapped-sequence (map (fn [x] (pred x)) a-seq)]
+  (or (first (filter identity mapped-sequence))
+      false))
   )
 
 (my-some even? [1 3 5 7])
@@ -98,8 +107,10 @@
 (my-some nil? [1 nil 2])
 (my-some first [[false] [1]])
 
-(defn my-every? [pred a-seq]
-  :-)
+(defn
+  my-every?
+  [pred a-seq]
+  )
 
 (defn prime? [n]
   :-)
