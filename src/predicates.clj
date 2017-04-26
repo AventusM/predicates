@@ -104,6 +104,7 @@
 
 
 ;sama juttu kuin yllä, ilman identity - funktiota
+; <3 anonymous functions (?)
 (defn
   my-some
   [pred a-seq]
