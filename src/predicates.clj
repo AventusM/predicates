@@ -110,7 +110,8 @@
   [pred a-seq]
   (let [mapped-sequence (map (fn [x] (pred x)) a-seq)
         filtered-sequence-contains-truthy? (first (filter (fn [y] (boolean y)) mapped-sequence))]
-    (or filtered-sequence-contains-truthy? false)))
+    (or filtered-sequence-contains-truthy? false))
+  )
 
 (my-some even? [1 3 5 7])
 (my-some even? [1 3 5 7 8])
