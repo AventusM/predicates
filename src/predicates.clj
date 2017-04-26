@@ -94,11 +94,21 @@
 ;http://stackoverflow.com/questions/12518320/counting-only-truthy-values-in-a-collection
 ;identity - niminen metodi. Se ratkaisi true - ongelmat, jotkut falset palauttivat nil
 ;ratkaisu siihen -> lisätään or
+;(defn
+;  my-some
+;  [pred a-seq]
+;  (let [mapped-sequence (map (fn [x] (pred x)) a-seq)]
+;  (or (first (filter identity mapped-sequence))
+;      false))
+;  )
+
+
+;sama juttu kuin yllä, ilman identity - funktiota
 (defn
   my-some
   [pred a-seq]
   (let [mapped-sequence (map (fn [x] (pred x)) a-seq)]
-  (or (first (filter identity mapped-sequence))
+  (or (first (filter (fn [y] (boolean y)) mapped-sequence))
       false))
   )
 
