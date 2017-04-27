@@ -104,7 +104,6 @@
 
 
 ;sama juttu kuin yllä, ilman identity - funktiota
-; <3 anonymous functions (?)
 (defn
   my-some
   [pred a-seq]
@@ -118,10 +117,19 @@
 (my-some nil? [1 nil 2])
 (my-some first [[false] [1]])
 
+;näyttää siltä, että oma ajatus käyttää omatekoista komplementtia
 (defn
   my-every?
   [pred a-seq]
+  (let [mapped-sequence (map (fn [x] (pred x)) a-seq)
+        filtered-sequence (filter (fn [y] (not (boolean y))) mapped-sequence)]
+    (empty? filtered-sequence))
   )
+
+(my-every? pos? [1 2 3 4])
+(my-every? pos? [1 2 3 4 0])
+(my-every? even? [2 4 6])
+(my-every? even? [])
 
 (defn prime? [n]
   :-)
